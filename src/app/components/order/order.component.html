@@ -1,0 +1,17 @@
+<div>
+    <h2>Orders</h2>
+    <form *ngIf="authService.getCurrentUser().type === 'customer'" (ngSubmit)="addOrder()">
+      <input type="text" [(ngModel)]="newOrder.restaurantId" name="restaurantId" placeholder="Restaurant ID" required>
+      <input type="text" [(ngModel)]="newOrder.items" name="items" placeholder="Items" required>
+      <button type="submit">Place Order</button>
+    </form>
+  
+    <div *ngFor="let order of orders">
+      <h3>Order ID: {{ order.id }}</h3>
+      <p>Status: {{ order.status }}</p>
+      <p>Items: {{ order.items }}</p>
+      <button *ngIf="authService.getCurrentUser().type === 'restaurant'" (click)="deleteOrder(order)">Delete</button>
+      <button (click)="updateOrder(order)">Update Status</button>
+    </div>
+  </div>
+  

@@ -1,0 +1,20 @@
+<div>
+    <h2>Menu</h2>
+    <form (ngSubmit)="addMenuItem()">
+      <input type="text" [(ngModel)]="newItem.name" name="name" placeholder="Name" required>
+      <input type="text" [(ngModel)]="newItem.description" name="description" placeholder="Description" required>
+      <input type="number" [(ngModel)]="newItem.price" name="price" placeholder="Price" required>
+      <input type="text" [(ngModel)]="newItem.image" name="image" placeholder="Image URL" required>
+      <button type="submit">Add Item</button>
+    </form>
+  
+    <div *ngFor="let item of menuItems">
+      <h3>{{ item.name }}</h3>
+      <p>{{ item.description }}</p>
+      <p>{{ item.price }}</p>
+      <img [src]="item.image" alt="{{ item.name }}">
+      <button (click)="deleteMenuItem(item)">Delete</button>
+      <button (click)="updateMenuItem(item)">Update</button>
+    </div>
+  </div>
+  
